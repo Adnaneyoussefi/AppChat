@@ -26,7 +26,7 @@ const LoginScreen = () => {
             <Grid item xs={2} sx={{ marginTop: 3 }}>
                 <Stack spacing={1} sx={{ width: 400 }}>                    
                     <TextField size="small" label="Email" variant="outlined" />
-                    <TextField size="small" label="Password" variant="outlined" />
+                    <TextField size="small" label="Password" variant="outlined" type="password" />
                     <Button variant="contained" color="primary">Login</Button>
                 </Stack>
                 <div>

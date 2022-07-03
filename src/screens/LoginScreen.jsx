@@ -1,7 +1,34 @@
 import React from 'react'
 import { Grid, Typography, TextField, Stack, Button, Link } from '@mui/material';
+// import { useHistory } from 'react-router-dom';
 
 const LoginScreen = () => {
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    // let history = useHistory()
+
+
+    const handleChangeEmail = (e) => {
+        setEmail(e.currentTarget.value);
+      }
+
+    const handleChangePassword = (e) => {
+        setPassword(e.currentTarget.value);
+    }
+
+    const login = () => {
+        // add axios
+        console.log({email, password})
+
+        try{
+            // if status 200
+            // console.log(history)
+            // history.push('/')
+        } catch(e) {
+
+        }
+    }
+
     return (
         <Grid
             container
@@ -25,9 +52,9 @@ const LoginScreen = () => {
             </Grid>
             <Grid item xs={2} sx={{ marginTop: 3 }}>
                 <Stack spacing={1} sx={{ width: 400 }}>                    
-                    <TextField size="small" label="Email" variant="outlined" />
-                    <TextField size="small" label="Password" variant="outlined" type="password" />
-                    <Button variant="contained" color="primary">Login</Button>
+                    <TextField size="small" label="Email" variant="outlined" onChange={(e)=>handleChangeEmail(e)} />
+                    <TextField size="small" label="Password" variant="outlined" type="password" onChange={(e)=>handleChangePassword(e)} />
+                    <Button variant="contained" color="primary" onClick={login}>Login</Button>
                 </Stack>
                 <div>
                     New to Slack ? 

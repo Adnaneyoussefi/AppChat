@@ -5,9 +5,31 @@ const SignupScreen = () => {
 
     const [value, setValue] = React.useState(new Date('2014-08-18T21:11:54'));
 
-    const handleChange = (newValue) => {
-        setValue(newValue);
-    };
+    const [firstName, setFirstName] = React.useState('');
+    const [lastName, setLastName] = React.useState('');
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+
+    const handleChangeEmail = (e) => {
+        setEmail(e.currentTarget.value);
+      }
+
+    const handleChangePassword = (e) => {
+        setPassword(e.currentTarget.value);
+    }
+
+    const handleFirstName = (e) => {
+        setFirstName(e.currentTarget.value);
+    }
+
+    const handleLastName = (e) => {
+        setLastName(e.currentTarget.value);
+    }
+
+    const signup = () => {
+        // add axios
+        console.log({firstName, lastName, email, password})
+    }
     
     return (
         <Grid
@@ -32,12 +54,12 @@ const SignupScreen = () => {
             </Grid>
             <Grid item xs={2} sx={{ marginTop: 3 }}>
                 <Stack spacing={1} sx={{ width: 400 }}>  
-                    <TextField size="small" label="First name" variant="outlined" />         
-                    <TextField size="small" label="Last name" variant="outlined" />    
+                    <TextField size="small" label="First name" variant="outlined" onChange={(e)=>handleFirstName(e)} />         
+                    <TextField size="small" label="Last name" variant="outlined" onChange={(e)=>handleLastName(e)} />    
                         
-                    <TextField size="small" label="Email" variant="outlined" />
-                    <TextField size="small" label="Password" variant="outlined" type="password" />
-                    <Button variant="contained" color="primary">Login</Button>
+                    <TextField size="small" label="Email" variant="outlined" onChange={(e)=>handleChangeEmail(e)} />
+                    <TextField size="small" label="Password" variant="outlined" type="password" onChange={(e)=>handleChangePassword(e)} />
+                    <Button variant="contained" color="primary" onClick={signup}>Signup</Button>
                 </Stack>
                 <div>
                     Already have an account ? 

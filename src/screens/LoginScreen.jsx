@@ -1,11 +1,11 @@
 import React from 'react'
 import { Grid, Typography, TextField, Stack, Button, Link } from '@mui/material';
-// import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const LoginScreen = () => {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
-    // let history = useHistory()
+    const navigate = useNavigate();
 
 
     const handleChangeEmail = (e) => {
@@ -22,8 +22,7 @@ const LoginScreen = () => {
 
         try{
             // if status 200
-            // console.log(history)
-            // history.push('/')
+            navigate('/');
         } catch(e) {
 
         }

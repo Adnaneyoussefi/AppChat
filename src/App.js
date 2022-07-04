@@ -1,3 +1,4 @@
+import * as React from 'react';
 import './App.css';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
 import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -8,16 +8,51 @@ import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { deepOrange, green } from '@mui/material/colors';
-
-
 import {Grid, Typography, Divider, Stack} from '@mui/material';
+import CreateWorkSpace from './CreateWorkSpace';
 
 export default function WorkSpaces() {
-  const [open, setOpen] = React.useState(true);
+    const [workSpaces, setWorkSpaces] = useState([]);
 
-  const handleClick = () => {
-    setOpen(!open);
-  };
+    const workspaces = [
+        {
+            nom: 'SUP MTI',
+            image: 'https://moutamadris.info/admin/avatar/avatar17.png',
+            members: [
+                {
+                  nom: "amine",
+                  image: "https://png.pngtree.com/png-vector/20191101/ourlarge/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg"
+                },
+                {
+                  nom: "amine",
+                  image: "https://png.pngtree.com/png-vector/20200614/ourlarge/pngtree-businessman-user-avatar-character-vector-illustration-png-image_2242909.jpg"
+                },{},{},{}
+            ]
+        },
+        {
+          nom: 'ISI4',
+          members: [
+              {}
+          ]
+      },
+      {
+          nom: 'SUP MTI',
+          members: [
+              {},{}
+          ]
+      },
+    ]
+
+    useEffect(() => {
+        getAllWorkSpaces()
+      }, []);
+
+    const getAllWorkSpaces = () => {
+        // get data from backend
+        // const data = .....
+        const data = workspaces;
+        setWorkSpaces(data);
+    }
 
   const user = {
       email: "adnaneyoussefi70@gmail.com",
@@ -25,36 +60,8 @@ export default function WorkSpaces() {
       prenom: "adnan"
   };
 
-  const workspaces = [
-      {
-          nom: 'SUP MTI',
-          image: 'https://moutamadris.info/admin/avatar/avatar17.png',
-          members: [
-              {
-                nom: "amine",
-                image: "https://png.pngtree.com/png-vector/20191101/ourlarge/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg"
-              },
-              {
-                nom: "amine",
-                image: "https://png.pngtree.com/png-vector/20200614/ourlarge/pngtree-businessman-user-avatar-character-vector-illustration-png-image_2242909.jpg"
-              },{},{},{}
-          ]
-      },
-      {
-        nom: 'ISI4',
-        members: [
-            {}
-        ]
-    },
-    {
-        nom: 'SUP MTI',
-        members: [
-            {},{}
-        ]
-    },
-  ]
-
   return (
+    <>
     <List
       sx={{ width: '100%', maxWidth: 600, bgcolor: 'background.paper', marginTop: 5, marginBottom: 5 }}
       component="nav"
@@ -69,7 +76,7 @@ export default function WorkSpaces() {
     >
         <Divider />
         {
-            workspaces.map((w) => (
+            workSpaces && workSpaces.map((w) => (
                 <>
                 <ListItemButton>
                     <ListItemIcon>
@@ -109,5 +116,7 @@ export default function WorkSpaces() {
             ))
         }
     </List>
+    <CreateWorkSpace getAllWorkSpaces={getAllWorkSpaces} />
+    </>
   );
 } 

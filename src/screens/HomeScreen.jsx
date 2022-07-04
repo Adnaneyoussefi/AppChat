@@ -1,7 +1,6 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import WorkSpaces from '../components/WorkSpaces';
 import {Grid, Typography} from '@mui/material';
-import CreateWorkSpace from '../components/CreateWorkSpace';
 
 const HomeScreen = () => {
   return (
@@ -26,7 +25,6 @@ const HomeScreen = () => {
             Choose a workspace below to get back to working with your team.
         </Grid>
         <WorkSpaces />
-        <CreateWorkSpace />
     </Grid>
   )
 }

@@ -1,24 +1,34 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import {FormHelperText, Input, Typography, InputLabel, FormControl, Button, Modal} from '@mui/material';
 
-export default function CreateWorkSpace() {
+export default function CreateWorkSpace({getAllWorkSpaces}) {
 
   const [open, setOpen] = React.useState(false);
   const [name, setName] = React.useState('');
+  const [description, setDescription] = React.useState('');
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const addWorkSpace = () => {
-    // add axios config
-    console.log({name})
+    try {
+      // add axios config
+      console.log({name, description})
+      getAllWorkSpaces()
+      setOpen(false)
+    } catch(e) {
+
+    }
   }
 
   const handleChangeName = (e) => {
     setName(e.currentTarget.value);
+  }
+
+  const handleChangeDescription = (e) => {
+    setDescription(e.currentTarget.value);
   }
 
   return (
@@ -37,11 +47,16 @@ export default function CreateWorkSpace() {
               >
                 <Box sx={style}>
                   <FormControl>
-                    <InputLabel htmlFor="my-input">Name of work space</InputLabel>
-                    <Input id="my-input" aria-describedby="my-helper-text" onChange={(e)=>handleChangeName(e)}/>
-                    <FormHelperText id="my-helper-text">Name</FormHelperText>
-                    <Button variant="contained" onClick={addWorkSpace}>Enregistrer</Button>
+                    <InputLabel htmlFor="my-name">Name of work space</InputLabel>
+                    <Input id="my-name" aria-describedby="my-helper-name" onChange={(e)=>handleChangeName(e)}/>
+                    <FormHelperText id="my-helper-name">Name</FormHelperText>
                   </FormControl>
+                  <FormControl sx={{marginTop: 3}}>
+                    <InputLabel htmlFor="my-description">Description</InputLabel>
+                    <Input id="my-description" aria-describedby="my-helper-description" onChange={(e)=>handleChangeDescription(e)}/>
+                    <FormHelperText id="my-helper-description">Description</FormHelperText>
+                  </FormControl>
+                  <Button variant="contained" onClick={addWorkSpace}>Enregistrer</Button>
                 </Box>
               </Modal>
           </Typography>
@@ -53,6 +68,8 @@ export default function CreateWorkSpace() {
 }
 
 const style = {
+  display: 'flex',
+  flexDirection: 'column',
   position: 'absolute',
   top: '50%',
   left: '50%',

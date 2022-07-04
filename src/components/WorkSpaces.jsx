@@ -10,6 +10,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { deepOrange, green } from '@mui/material/colors';
 import {Grid, Typography, Divider, Stack} from '@mui/material';
 import CreateWorkSpace from './CreateWorkSpace';
+import { useNavigate } from 'react-router-dom';
 
 export default function WorkSpaces() {
     const [workSpaces, setWorkSpaces] = useState([]);
@@ -42,6 +43,7 @@ export default function WorkSpaces() {
           ]
       },
     ]
+    const navigate = useNavigate();
 
     useEffect(() => {
         getAllWorkSpaces()
@@ -52,6 +54,11 @@ export default function WorkSpaces() {
         // const data = .....
         const data = workspaces;
         setWorkSpaces(data);
+    }
+
+    const goToWorkSpace = (w) => {
+        console.log("ddd")
+        navigate('/workspace', {state: w})
     }
 
   const user = {
@@ -78,7 +85,7 @@ export default function WorkSpaces() {
         {
             workSpaces && workSpaces.map((w) => (
                 <>
-                <ListItemButton>
+                <ListItemButton onClick={() => goToWorkSpace(w)}>
                     <ListItemIcon>
                         <Avatar sx={{ bgcolor: green[500] }} variant="rounded" src={w.image}>
                         </Avatar>
